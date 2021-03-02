@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fukagawa-coffee": {
+      "hosting": {
+        "fukagawa-coffee": [
+          "fukagawa-coffee"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "prod": "fukagawa-coffee"
+  }
+}
