@@ -10,7 +10,10 @@ import { environment } from '../environments/environment';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,13 +28,24 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AddItemComponent } from './items/add-item/add-item.component';
 import { FormsModule } from '@angular/forms';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { LoginComponent } from './login/login.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, AddItemComponent, ItemDetailComponent],
+  declarations: [
+    AppComponent,
+    ItemListComponent,
+    AddItemComponent,
+    ItemDetailComponent,
+    LoginComponent,
+    CustomerListComponent,
+  ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     AngularFireAnalyticsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -41,12 +55,15 @@ import { ItemDetailComponent } from './items/item-detail/item-detail.component';
     }),
     MatToolbarModule,
     MatSidenavModule,
+    MatCardModule,
     MatButtonModule,
+    MatDividerModule,
     MatIconModule,
     MatListModule,
     MatGridListModule,
     MatTooltipModule,
     MatDialogModule,
+    MatSnackBarModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,

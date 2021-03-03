@@ -1,1 +1,61 @@
-<p>item-detail works!</p>
+<mat-card>
+  <mat-card-title>
+    {{ item.name }}
+  </mat-card-title>
+  <mat-card-subtitle> {{ item.storage }}在庫 </mat-card-subtitle>
+
+  <mat-card-content>
+    {{ item.notes }}
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="deleteItem()">
+      <mat-icon>delete</mat-icon>
+      削除
+    </button>
+    <button mat-raised-button (click)="editItem()">
+      <mat-icon>edit</mat-icon>
+      編集
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
+  <mat-card-subtitle> 操作 </mat-card-subtitle>
+  <mat-card-content>
+    <mat-form-field appearance="fill">
+      <mat-label>残り数</mat-label>
+      <input type="number" required matInput min="0" [value]="item.count" />
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <p>
+      <button mat-raised-button (click)="changeValue(10)">
+        <mat-icon>add</mat-icon>
+        10
+      </button>
+      <button mat-raised-button (click)="changeValue(1)">
+        <mat-icon>add</mat-icon>
+        1
+      </button>
+
+      <mat-divider inset></mat-divider>
+
+      <button mat-raised-button (click)="changeValue(-1)">
+        <mat-icon>remove</mat-icon>
+        1
+      </button>
+      <button mat-raised-button (click)="changeValue(-10)">
+        <mat-icon>remove</mat-icon>
+        10
+      </button>
+    </p>
+  </mat-card-actions>
+</mat-card>
+
+<p>
+  <a mat-raised-button color="primary" routerLink="/">
+    <mat-icon>arrow_back</mat-icon>
+    保存して戻る
+  </a>
+</p>

@@ -11,12 +11,11 @@ import { AddItemComponent } from '../add-item/add-item.component';
   styleUrls: ['./item-list.component.scss'],
 })
 export class ItemListComponent implements OnInit {
-  columns = Math.floor(window.innerWidth / 220).toString();
+  columns = Math.floor(window.innerWidth / 200).toString();
   items: Observable<Item[]>;
 
   constructor(private dialog: MatDialog, private is: ItemService) {
     this.items = this.is.list();
-    console.log(this.columns);
   }
 
   ngOnInit(): void {}
