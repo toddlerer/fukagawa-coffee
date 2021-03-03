@@ -12,13 +12,22 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { ItemListComponent } from './items/item-list/item-list.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AddItemComponent } from './items/add-item/add-item.component';
+import { FormsModule } from '@angular/forms';
+import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent],
+  declarations: [AppComponent, ItemListComponent, AddItemComponent, ItemDetailComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -26,6 +35,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireAnalyticsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
@@ -34,6 +44,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatGridListModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

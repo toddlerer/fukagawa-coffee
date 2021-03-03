@@ -1,1 +1,17 @@
-<p>item-list works!</p>
+<mat-grid-list [cols]="columns" rowHeight="9em">
+  <mat-grid-tile
+    *ngFor="let item of items | async"
+    [ngClass]="{ low: item.count < item.notifyCount }"
+    routerLink="/item/{{ item.id }}"
+  >
+    <p>
+      <strong class="item-name"> {{ item.name }} </strong>
+      <span class="item-left"> {{ item.count }} </span>
+      <span class="item-stock"> {{ item.storage }} </span>
+    </p>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<button mat-fab matTooltip="品目を追加" (click)="addItem()">
+  <mat-icon>add</mat-icon>
+</button>
