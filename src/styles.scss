@@ -4,6 +4,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -17,4 +18,15 @@ mat-icon {
   position: fixed;
   bottom: 2em;
   left: 2em;
+}
+
+@media print {
+  mat-toolbar,
+  mat-sidenav {
+    display: none !important;
+  }
+
+  mat-sidenav-content {
+    margin-right: 0 !important;
+  }
 }

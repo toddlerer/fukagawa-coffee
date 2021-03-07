@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>品目を{{ data.type }}する</h1>
+<h1 mat-dialog-title>品目を{{ data.type }}</h1>
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label> 品目名 </mat-label>
@@ -8,6 +8,7 @@
       matInput
       placeholder="瓶アイスコーヒー"
       [(ngModel)]="data.item.name"
+      name="item-name"
     />
   </mat-form-field>
 
@@ -22,7 +23,13 @@
 
   <mat-form-field appearance="fill">
     <mat-label>これより少なくなったら色を変える</mat-label>
-    <input type="number" matInput min="0" [(ngModel)]="data.item.notifyCount" />
+    <input
+      type="number"
+      matInput
+      min="0"
+      [(ngModel)]="data.item.notifyCount"
+      name="item-notify-count"
+    />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -32,6 +39,8 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-raised-button [mat-dialog-close]="data.item" color="primary">OK</button>
+  <button mat-raised-button [mat-dialog-close]="data.item" color="primary">
+    OK
+  </button>
   <button mat-raised-button mat-dialog-close>キャンセル</button>
 </div>

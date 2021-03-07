@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>取引先を{{ data.type }}</h1>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label> 取引先名 </mat-label>
+    <input
+      type="text"
+      matInput
+      required
+      [(ngModel)]="data.customer.name"
+      placeholder="合同会社Team IshiHara"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label> 住所・連絡先 </mat-label>
+    <textarea
+      matInput
+      [(ngModel)]="data.customer.address"
+      placeholder="〒734-0047
+広島市南区本浦町16-19 志楽蝶BASE
+TEL 082-XXX-XXXX"
+    ></textarea>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="data.customer" color="primary">
+    OK
+  </button>
+  <button mat-raised-button mat-dialog-close>キャンセル</button>
+</div>

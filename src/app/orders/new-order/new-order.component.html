@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-title> {{ customer?.name }}さま </mat-card-title>
+
+  <mat-card-subtitle> オンライン注文書 </mat-card-subtitle>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let item of items; index as i">
+        <span matLine>
+          {{ item.name }}
+        </span>
+
+        <mat-form-field appearance="fill" matLine>
+          <mat-label> 数量 </mat-label>
+          <input
+            type="number"
+            name="num-{{ item.id }}"
+            min="0"
+            matInput
+            [(ngModel)]="item.orderedCount"
+          />
+        </mat-form-field>
+
+        <mat-divider matLine></mat-divider>
+      </mat-list-item>
+
+      <mat-list-item>
+        <span matLine>
+            備考
+        </span>
+        <mat-form-filed matLine appearance="fill">
+            <textarea name=""></textarea>
+        </mat-form-filed>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary">
+      <mat-icon>send</mat-icon>
+      送信
+    </button>
+  </mat-card-actions>
+</mat-card>

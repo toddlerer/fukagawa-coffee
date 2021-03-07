@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { ItemService } from 'src/app/services/item.service';
 import { Item, ItemDialogData } from 'src/models/item.model';
 import { AddItemComponent } from '../add-item/add-item.component';
@@ -11,12 +11,11 @@ import { AddItemComponent } from '../add-item/add-item.component';
   styleUrls: ['./item-list.component.scss'],
 })
 export class ItemListComponent implements OnInit {
-  columns = Math.floor(window.innerWidth / 200).toString();
-  items: Observable<Item[]>;
-
-  constructor(private dialog: MatDialog, private is: ItemService) {
-    this.items = this.is.list();
-  }
+  constructor(
+    private dialog: MatDialog,
+    private router: Router,
+    private is: ItemService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,10 +28,14 @@ export class ItemListComponent implements OnInit {
         },
       })
       .afterClosed()
-      .subscribe(async (item) => {
+      .subscribe((item) => {
         if (item) {
           this.is.store(item);
         }
       });
+  }
+
+  linkToDetail(item: Item) {
+    this.router.navigateByUrl(`/item/${item.id}`);
   }
 }

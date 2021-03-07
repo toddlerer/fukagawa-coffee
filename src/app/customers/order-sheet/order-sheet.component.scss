@@ -1,0 +1,101 @@
+section {
+  margin: 2rem 2rem;
+  font-size: 16px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+mat-card {
+    margin-bottom: 2rem;
+}
+
+h2,
+h3 {
+  border-bottom: 1px solid #000;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  width: 100%;
+  font-size: 16px;
+  height: 5rem;
+  resize: vertical;
+}
+
+.company-info {
+  display: flex;
+  .customer-info {
+    flex-grow: 2;
+    margin-right: 2rem;
+  }
+  & > p {
+    align-self: flex-end;
+  }
+}
+
+table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  border: 2px solid #000;
+
+  thead {
+    border-bottom: 3px double #000;
+  }
+
+  th,
+  td {
+    border: solid 1px #000;
+    line-height: 2.2rem;
+    font-weight: normal;
+  }
+
+  td {
+    padding-left: 1rem;
+  }
+}
+
+@media screen {
+  .price-cell {
+    width: 9em;
+    input {
+      width: 8em;
+    }
+  }
+  .print {
+    display: none;
+  }
+}
+
+.online-order {
+  img {
+    width: 2.5cm;
+    height: 2.5cm;
+    float: right;
+    border: 1px solid #000;
+  }
+}
+
+@media print {
+  mat-card {
+    display: none;
+  }
+
+  textarea {
+    border: none;
+    resize: none;
+  }
+
+  input {
+    display: none;
+  }
+
+  .price-cell {
+    text-align: right;
+    padding: 0 1rem 0 0;
+    width: 5rem;
+  }
+}

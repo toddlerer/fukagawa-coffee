@@ -1,4 +1,4 @@
-export type ItemDialogType = '追加' | '編集';
+export type DialogType = '追加' | '編集';
 
 export type Item = {
   id: string;
@@ -10,6 +10,6 @@ export type Item = {
 };
 
 export type ItemDialogData = {
-  type: ItemDialogType;
+  type: DialogType;
   item: Partial<Item>;
 };

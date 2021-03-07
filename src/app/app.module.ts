@@ -30,7 +30,13 @@ import { FormsModule } from '@angular/forms';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
-import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
+import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
+import { ItemSelectorComponent } from './items/item-selector/item-selector.component';
+import { AssociateItemComponent } from './customers/associate-item/associate-item.component';
+import { OrderSheetComponent } from './customers/order-sheet/order-sheet.component';
+import { NewOrderComponent } from './orders/new-order/new-order.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +46,12 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
     ItemDetailComponent,
     LoginComponent,
     CustomerListComponent,
+    AddCustomerComponent,
+    CustomerDetailComponent,
+    ItemSelectorComponent,
+    AssociateItemComponent,
+    OrderSheetComponent,
+    NewOrderComponent,
   ],
   imports: [
     BrowserModule,
