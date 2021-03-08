@@ -5,3 +5,15 @@ mat-card {
 mat-list-item {
   margin-top: 1em;
 }
+
+.mat-line.item-line {
+  display: flex;
+  span {
+    flex-grow: 2;
+  }
+}
+
+.notes {
+  width: calc(100% - 2em);
+  margin: 1em 1em 0 1em;
+}

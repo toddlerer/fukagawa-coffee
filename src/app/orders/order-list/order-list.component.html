@@ -1,0 +1,15 @@
+<mat-nav-list>
+  <a
+    mat-list-item
+    routerLink="./{{ order.id }}"
+    *ngFor="let order of orders | async"
+  >
+    <p matLine>
+      {{ order.customerName }}
+      ({{ order.items.length }}品目)
+    </p>
+    <date matLine>
+      {{ order.orderedAt.toDate() | date: "y/M/d　h:mm" }}
+    </date>
+  </a>
+</mat-nav-list>

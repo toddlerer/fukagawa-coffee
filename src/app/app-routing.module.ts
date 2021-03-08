@@ -12,6 +12,8 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 import { OrderSheetComponent } from './customers/order-sheet/order-sheet.component';
 import { NewOrderComponent } from './orders/new-order/new-order.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
             component: OrderSheetComponent,
           },
         ],
+      },
+      {
+        path: 'order',
+        component: OrderListComponent,
+      },
+      {
+        path: 'order/:id',
+        component: OrderDetailComponent,
       },
     ],
     canActivate: [AngularFireAuthGuard],

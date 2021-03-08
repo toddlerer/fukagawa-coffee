@@ -37,6 +37,8 @@ import { ItemSelectorComponent } from './items/item-selector/item-selector.compo
 import { AssociateItemComponent } from './customers/associate-item/associate-item.component';
 import { OrderSheetComponent } from './customers/order-sheet/order-sheet.component';
 import { NewOrderComponent } from './orders/new-order/new-order.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { NewOrderComponent } from './orders/new-order/new-order.component';
     AssociateItemComponent,
     OrderSheetComponent,
     NewOrderComponent,
+    OrderListComponent,
+    OrderDetailComponent,
   ],
   imports: [
     BrowserModule,
