@@ -39,6 +39,7 @@ import { OrderSheetComponent } from './customers/order-sheet/order-sheet.compone
 import { NewOrderComponent } from './orders/new-order/new-order.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { OrderDetailComponent } from './orders/order-detail/order-detail.compone
     NewOrderComponent,
     OrderListComponent,
     OrderDetailComponent,
+    MemberListComponent,
   ],
   imports: [
     BrowserModule,
