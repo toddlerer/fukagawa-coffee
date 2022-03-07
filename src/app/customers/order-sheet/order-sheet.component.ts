@@ -14,6 +14,8 @@ export class OrderSheetComponent implements OnInit {
   customer: Customer | undefined;
   items: Partial<Item & { price: string }>[] = [];
 
+  orderAddress = '';
+
   qrCodeAddress = '';
   isNotReady = true;
 
@@ -29,9 +31,10 @@ export class OrderSheetComponent implements OnInit {
 
         const items = Object.keys(customer?.items || {});
         if (customer && items.length) {
+          this.orderAdress = `${location.origin}/order/${customer.id}/new`;
           this.qrCodeAddress =
             'https://api.qrserver.com/v1/create-qr-code/?format=svg&qzone=1&data=' +
-            encodeURIComponent(`${location.origin}/order/${customer.id}/new`);
+            encodeURIComponent(this.orderAddress);
           this.is
             .list((ref) => ref.where('id', 'in', items))
             .subscribe((items) => {
