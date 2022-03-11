@@ -9,6 +9,7 @@
     }
   },
   "projects": {
-    "prod": "fukagawa-coffee"
+    "prod": "fukagawa-coffee",
+    "default": "fukagawa-coffee"
   }
 }
