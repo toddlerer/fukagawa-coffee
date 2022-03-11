@@ -22,13 +22,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ItemListComponent } from './items/item-list/item-list.component';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AddItemComponent } from './items/add-item/add-item.component';
 import { FormsModule } from '@angular/forms';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
@@ -40,6 +36,9 @@ import { NewOrderComponent } from './orders/new-order/new-order.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -61,10 +60,9 @@ import { MemberListComponent } from './members/member-list/member-list.component
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    AngularFireAnalyticsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

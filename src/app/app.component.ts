@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app';
+import { Auth, onAuthStateChanged, User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +7,10 @@ import firebase from 'firebase/app';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  user: firebase.User | null = null;
+  user: User | null = null;
 
-  constructor(private auth: AngularFireAuth) {
-    auth.onAuthStateChanged((user) => {
+  constructor(private auth: Auth) {
+    onAuthStateChanged(this.auth, (user) => {
       this.user = user;
     });
   }

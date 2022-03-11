@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { where } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ItemService } from 'src/app/services/item.service';
 import { OrderService } from 'src/app/services/order.service';
 import { Item } from 'src/models/item.model';
@@ -27,9 +27,7 @@ export class OrderDetailComponent implements OnInit {
         this.order = order;
 
         this.is
-          .list((ref) =>
-            ref.where('id', 'in', order?.items.map((item) => item.id) || [])
-          )
+          .list(where('id', 'in', order?.items.map((item) => item.id) || []))
           .subscribe((items) => {
             for (const item of items) {
               this.itemList[item.id] = item;

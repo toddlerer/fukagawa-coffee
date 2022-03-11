@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { where } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 import { ItemService } from 'src/app/services/item.service';
@@ -31,16 +32,14 @@ export class OrderSheetComponent implements OnInit {
 
         const items = Object.keys(customer?.items || {});
         if (customer && items.length) {
-          this.orderAdress = `${location.origin}/order/${customer.id}/new`;
+          this.orderAddress = `${location.origin}/order/${customer.id}/new`;
           this.qrCodeAddress =
             'https://api.qrserver.com/v1/create-qr-code/?format=svg&qzone=1&data=' +
             encodeURIComponent(this.orderAddress);
-          this.is
-            .list((ref) => ref.where('id', 'in', items))
-            .subscribe((items) => {
-              this.items = items;
-              this.items.push(...Array(10 - items.length).fill({}));
-            });
+          this.is.list(where('id', 'in', items)).subscribe((items) => {
+            this.items = items;
+            this.items.push(...Array(10 - items.length).fill({}));
+          });
         }
       });
   }

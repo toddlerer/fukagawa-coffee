@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CustomerService } from 'src/app/services/customer.service';
 import { CustomerDialogData } from 'src/models/customer.model';
 
 @Component({
@@ -11,11 +11,11 @@ import { CustomerDialogData } from 'src/models/customer.model';
 export class AddCustomerComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: CustomerDialogData,
-    private fire: AngularFirestore
+    private cs: CustomerService
   ) {
     if (typeof data.customer.id === 'undefined') {
       data.customer = {
-        id: this.fire.createId(),
+        id: this.cs.id,
         name: '',
         address: '',
         items: {},

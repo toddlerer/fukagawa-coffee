@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { where } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -34,11 +35,9 @@ export class CustomerDetailComponent implements OnInit, OnDestroy {
 
         const items = Object.keys(customer?.items || {});
         if (customer && items.length) {
-          this.is
-            .list((ref) => ref.where('id', 'in', items))
-            .subscribe((items) => {
-              this.items = items;
-            });
+          this.is.list(where('id', 'in', items)).subscribe((items) => {
+            this.items = items;
+          });
         }
       });
   }

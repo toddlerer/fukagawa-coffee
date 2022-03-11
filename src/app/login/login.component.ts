@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import {
+  Auth,
+  ConfirmationResult,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+} from '@angular/fire/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import firebase from 'firebase/app';
-import 'firebase/auth';
 
 @Component({
   selector: 'app-login',
@@ -15,23 +18,27 @@ export class LoginComponent implements OnInit {
   isSent = false;
   codeReady = false;
 
-  private authResult: firebase.auth.ConfirmationResult | undefined;
+  private authResult?: ConfirmationResult;
 
-  constructor(private auth: AngularFireAuth, private sb: MatSnackBar) {}
+  constructor(private auth: Auth, private sb: MatSnackBar) {}
 
   ngOnInit(): void {}
 
   sendConfirmation() {
-    const verifier = new firebase.auth.RecaptchaVerifier('send-confirmation', {
-      size: 'invisible',
-    });
+    const verifier = new RecaptchaVerifier(
+      'send-confirmation',
+      {
+        size: 'invisible',
+      },
+      this.auth
+    );
 
     this.isSent = true;
     const phoneNumber = this.phoneNumber.startsWith('+')
       ? this.phoneNumber
       : '+81' + this.phoneNumber;
 
-    this.auth.signInWithPhoneNumber(phoneNumber, verifier).then(
+    signInWithPhoneNumber(this.auth, phoneNumber, verifier).then(
       (result) => {
         this.codeReady = true;
 

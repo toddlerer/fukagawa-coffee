@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
 import { Customer } from 'src/models/customer.model';
 import { FirestoreBase } from './firestoreBase';
 
@@ -7,7 +7,7 @@ import { FirestoreBase } from './firestoreBase';
   providedIn: 'root',
 })
 export class CustomerService extends FirestoreBase<Customer> {
-  constructor(db: AngularFirestore) {
+  constructor(db: Firestore) {
     super(db, 'customers');
   }
 }
