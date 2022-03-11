@@ -1,26 +1,51 @@
-import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
-import firebase from 'firebase/app';
+import {
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  docData,
+  Firestore,
+  query,
+  setDoc,
+} from '@angular/fire/firestore';
+import {
+  CollectionReference,
+  DocumentReference,
+  QueryConstraint,
+  WithFieldValue,
+} from 'firebase/firestore';
+import { Observable } from 'rxjs';
 
 export class FirestoreBase<T> {
-  constructor(protected db: AngularFirestore, protected path: string) {}
+  constructor(protected db: Firestore, protected path: string) {}
 
-  list(where?: QueryFn<firebase.firestore.DocumentData>) {
-    return this.db.collection<T>(this.path, where).valueChanges();
+  private col = collection(this.db, this.path) as CollectionReference<T>;
+
+  list(where?: QueryConstraint): Observable<T[]> {
+    return collectionData<T>(where ? query<T>(this.col, where) : this.col);
+  }
+
+  private ref(id: string) {
+    return doc(this.db, `${this.path}/${id}`) as DocumentReference<T>;
+  }
+
+  get id(): string {
+    return doc(this.col).id;
   }
 
   load(id: string) {
-    return this.db.doc<T>(`${this.path}/${id}`).valueChanges();
+    return docData<T>(this.ref(id));
   }
 
-  overwrite(data: T & { id: string }) {
-    return this.db.doc<T>(`${this.path}/${data.id}`).set(data);
+  overwrite(data: WithFieldValue<T> & { id: string }): Promise<void> {
+    return setDoc(this.ref(data.id), data);
   }
 
-  store(data: T & { id: string }) {
-    return this.db.doc<T>(`${this.path}/${data.id}`).set(data, { merge: true });
+  store(data: WithFieldValue<T> & { id: string }): Promise<void> {
+    return setDoc(this.ref(data.id), data, { merge: true });
   }
 
-  delete(id: string) {
-    return this.db.doc<T>(`${this.path}/${id}`).delete();
+  delete(id: string): Promise<void> {
+    return deleteDoc(this.ref(id));
   }
 }

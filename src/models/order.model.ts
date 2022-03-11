@@ -1,6 +1,6 @@
 import { Customer } from './customer.model';
 import { Item } from './item.model';
-import firebase from 'firebase/app';
+import { FieldValue, Timestamp } from 'firebase/firestore';
 
 export type ItemListItem = {
   id: Item['id'];
@@ -12,7 +12,7 @@ export type Order = {
   id: string;
   customerId: Customer['id'];
   customerName: Customer['name'];
-  orderedAt: firebase.firestore.Timestamp;
+  orderedAt: Timestamp;
   items: ItemListItem[];
   notes: string;
   isDone: boolean;

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { CustomerService } from 'src/app/services/customer.service';
 import { OrderService } from 'src/app/services/order.service';
-import { Customer } from 'src/models/customer.model';
 import { Order } from 'src/models/order.model';
 
 @Component({
@@ -13,8 +12,8 @@ import { Order } from 'src/models/order.model';
 export class OrderListComponent implements OnInit {
   orders: Observable<Order[]>;
 
-  constructor(private os: OrderService, private cs: CustomerService) {
-    this.orders = this.os.list((ref) => ref.where('isDone', '==', false));
+  constructor(private os: OrderService) {
+    this.orders = this.os.list(where('isDone', '==', false));
   }
 
   ngOnInit(): void {}

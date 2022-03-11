@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-  AngularFireAuthGuard,
+  AuthGuard,
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
@@ -58,7 +58,7 @@ const routes: Routes = [
         component: MemberListComponent,
       },
     ],
-    canActivate: [AngularFireAuthGuard],
+    canActivate: [AuthGuard],
     data: {
       authGuardPipe: () => redirectUnauthorizedTo('/login'),
     },
@@ -72,7 +72,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [AngularFireAuthGuard],
+    canActivate: [AuthGuard],
     data: {
       authGuardPipe: () => redirectLoggedInTo('/'),
     },

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ItemService } from 'src/app/services/item.service';
 import { ItemDialogData } from 'src/models/item.model';
 import { StorageList } from 'src/models/store.model';
 
@@ -14,11 +14,11 @@ export class AddItemComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ItemDialogData,
-    private fire: AngularFirestore
+    private item: ItemService
   ) {
     if (typeof data.item.id === 'undefined') {
       data.item = {
-        id: this.fire.createId(),
+        id: this.item.id,
         name: '',
         count: 0,
         storage: StorageList[0],

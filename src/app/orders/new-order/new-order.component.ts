@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  Firestore,
+  serverTimestamp,
+  where,
+  WithFieldValue,
+} from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
@@ -8,7 +13,6 @@ import { OrderService } from 'src/app/services/order.service';
 import { Customer } from 'src/models/customer.model';
 import { Item } from 'src/models/item.model';
 import { Order } from 'src/models/order.model';
-import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-new-order',
@@ -18,8 +22,8 @@ import firebase from 'firebase/app';
 export class NewOrderComponent implements OnInit {
   customer: Customer | undefined;
   items: Partial<Item & { orderedCount: number }>[] = [];
-  order: Omit<Order, 'id'> = {
-    orderedAt: firebase.firestore.Timestamp.fromDate(new Date()),
+  order: WithFieldValue<Omit<Order, 'id'>> = {
+    orderedAt: serverTimestamp(),
     customerId: '',
     customerName: '',
     items: [],
@@ -33,7 +37,7 @@ export class NewOrderComponent implements OnInit {
     private cs: CustomerService,
     private is: ItemService,
     private os: OrderService,
-    private fire: AngularFirestore,
+    private fire: Firestore,
     private sb: MatSnackBar
   ) {
     this.cs
@@ -46,11 +50,9 @@ export class NewOrderComponent implements OnInit {
         this.order.customerName = customer.name;
         const items = Object.keys(customer.items || {});
         if (items.length) {
-          this.is
-            .list((ref) => ref.where('id', 'in', items))
-            .subscribe((items) => {
-              this.items = items;
-            });
+          this.is.list(where('id', 'in', items)).subscribe((items) => {
+            this.items = items;
+          });
         }
       });
   }
@@ -66,7 +68,7 @@ export class NewOrderComponent implements OnInit {
 
   sendOrder() {
     this.sending = true;
-    this.order.orderedAt = firebase.firestore.Timestamp.fromDate(new Date());
+    this.order.orderedAt = serverTimestamp();
     this.order.items = this.items
       .map((item) => ({
         id: item.id || '',
@@ -74,7 +76,7 @@ export class NewOrderComponent implements OnInit {
         orderedCount: item.orderedCount || 0,
       }))
       .filter((item) => item.orderedCount);
-    this.os.store(Object.assign({ id: this.fire.createId() }, this.order)).then(
+    this.os.store(Object.assign({ id: this.os.id }, this.order)).then(
       () => {
         this.sb.open('注文を送信しました', undefined, {
           duration: 3000,
