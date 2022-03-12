@@ -25,7 +25,6 @@ import { ItemListComponent } from './items/item-list/item-list.component';
 import { AddItemComponent } from './items/add-item/add-item.component';
 import { FormsModule } from '@angular/forms';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
-import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
@@ -46,7 +45,6 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     ItemListComponent,
     AddItemComponent,
     ItemDetailComponent,
-    LoginComponent,
     CustomerListComponent,
     AddCustomerComponent,
     CustomerDetailComponent,

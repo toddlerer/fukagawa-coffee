@@ -7,7 +7,6 @@ import {
 } from '@angular/fire/auth-guard';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
-import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 import { OrderSheetComponent } from './customers/order-sheet/order-sheet.component';
@@ -71,7 +70,8 @@ const routes: Routes = [
 
   {
     path: 'login',
-    component: LoginComponent,
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
     canActivate: [AuthGuard],
     data: {
       authGuardPipe: () => redirectLoggedInTo('/'),
