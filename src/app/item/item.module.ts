@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { ItemSelectorModule } from '../components/item-selector/item-selector.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [ItemListComponent, AddItemComponent, ItemDetailComponent],
@@ -34,6 +36,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatOptionModule,
     MatButtonModule,
     MatTooltipModule,
+    MatInputModule,
+    MatSelectModule,
   ],
 })
 export class ItemModule {}

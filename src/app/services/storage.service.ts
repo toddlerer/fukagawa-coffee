@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { Storage } from 'src/models/store.model';
+import { Storage } from 'src/models/storage.model';
 import { FirestoreBase } from './firestoreBase';
 
 @Injectable({
