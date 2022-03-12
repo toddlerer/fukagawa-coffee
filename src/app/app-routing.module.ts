@@ -5,16 +5,7 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
-import { ItemDetailComponent } from './items/item-detail/item-detail.component';
-import { ItemListComponent } from './items/item-list/item-list.component';
-import { LoginComponent } from './login/login.component';
-import { CustomerListComponent } from './customers/customer-list/customer-list.component';
-import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
-import { OrderSheetComponent } from './customers/order-sheet/order-sheet.component';
-import { NewOrderComponent } from './orders/new-order/new-order.component';
-import { OrderListComponent } from './orders/order-list/order-list.component';
-import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
+import { NewOrderComponent } from './order/new-order/new-order.component';
 
 const routes: Routes = [
   {
@@ -22,40 +13,27 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ItemListComponent,
+        redirectTo: '/item',
+        pathMatch: 'full',
       },
       {
-        path: 'item/:id',
-        component: ItemDetailComponent,
+        path: 'item',
+        loadChildren: () =>
+          import('./item/item.module').then((m) => m.ItemModule),
       },
       {
         path: 'customer',
-        children: [
-          {
-            path: '',
-            component: CustomerListComponent,
-          },
-          {
-            path: ':id',
-            component: CustomerDetailComponent,
-          },
-          {
-            path: ':id/order-sheet',
-            component: OrderSheetComponent,
-          },
-        ],
+        loadChildren: () =>
+          import('./customer/customer.module').then((m) => m.CustomerModule),
       },
       {
         path: 'order',
-        component: OrderListComponent,
-      },
-      {
-        path: 'order/:id',
-        component: OrderDetailComponent,
+        loadChildren: () => import('./order/order.module').then((m) => m.OrderModule),
       },
       {
         path: 'member',
-        component: MemberListComponent,
+        loadChildren: () =>
+          import('./member/member.module').then((m) => m.MemberModule),
       },
     ],
     canActivate: [AuthGuard],
@@ -71,7 +49,8 @@ const routes: Routes = [
 
   {
     path: 'login',
-    component: LoginComponent,
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
     canActivate: [AuthGuard],
     data: {
       authGuardPipe: () => redirectLoggedInTo('/'),
