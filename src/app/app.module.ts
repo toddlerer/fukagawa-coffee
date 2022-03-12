@@ -1,3 +1,4 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -31,6 +32,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

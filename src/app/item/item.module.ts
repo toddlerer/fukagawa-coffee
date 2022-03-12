@@ -18,6 +18,7 @@ import { ItemSelectorModule } from '../components/item-selector/item-selector.mo
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {  MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ItemListComponent, AddItemComponent, ItemDetailComponent],
@@ -38,6 +39,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatTooltipModule,
     MatInputModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
 })
 export class ItemModule {}

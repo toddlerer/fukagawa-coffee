@@ -1,3 +1,4 @@
+import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -16,6 +17,7 @@ import { ItemSelectorModule } from '../components/item-selector/item-selector.mo
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTooltipModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSnackBarModule,
+    MatInputModule,
   ],
 })
 export class CustomerModule {}
